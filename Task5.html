@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Auth System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f4f8, #d9e4f5);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #0077cc;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #005fa3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #securePage {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login/Register Form -->
+  <div class="container" id="authContainer">
+    <h2 id="formTitle">Login</h2>
+    <input type="text" id="authUsername" placeholder="Username" />
+    <input type="password" id="authPassword" placeholder="Password" />
+    <br>
+    <button class="btn" onclick="handleAuth()" id="authButton">Login</button>
+    <button class="btn" onclick="toggleForm()">Switch to Register</button>
+  </div>
+
+  <!-- Secure Page -->
+  <div class="container hidden" id="securePage">
+    <h2>🔒 Welcome to the Secure Page!</h2>
+    <p id="welcomeUser"></p>
+    <button class="btn" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    let isLoginMode = true;
+
+    // Toggle between Login and Register
+    function toggleForm() {
+      isLoginMode = !isLoginMode;
+      document.getElementById("formTitle").textContent = isLoginMode ? "Login" : "Register";
+      document.getElementById("authButton").textContent = isLoginMode ? "Login" : "Register";
+    }
+
+    // Handle Login or Register
+    function handleAuth() {
+      const username = document.getElementById("authUsername").value.trim();
+      const password = document.getElementById("authPassword").value;
+
+      if (!username || !password) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      if (isLoginMode) {
+        login(username, password);
+      } else {
+        register(username, password);
+      }
+    }
+
+    // Registration Logic
+    function register(username, password) {
+      if (localStorage.getItem(user_${username})) {
+        alert("User already exists. Please log in.");
+        return;
+      }
+
+      const userData = { username, password }; // For demo only – not secure!
+      localStorage.setItem(user_${username}, JSON.stringify(userData));
+      alert("Registration successful! You can now log in.");
+      toggleForm(); // Switch to login
+    }
+
+    // Login Logic
+    function login(username, password) {
+      const storedUser = localStorage.getItem(user_${username});
+      if (!storedUser) {
+        alert("User not found.");
+        return;
+      }
+
+      const { password: storedPass } = JSON.parse(storedUser);
+      if (storedPass === password) {
+        localStorage.setItem("currentUser", username);
+        showSecurePage(username);
+      } else {
+        alert("Incorrect password.");
+      }
+    }
+
+    // Display Secure Page
+    function showSecurePage(username) {
+      document.getElementById("authContainer").classList.add("hidden");
+      document.getElementById("securePage").classList.remove("hidden");
+      document.getElementById("welcomeUser").textContent = Hello, ${username}!;
+    }
+
+    // Logout
+    function logout() {
+      localStorage.removeItem("currentUser");
+      document.getElementById("securePage").classList.add("hidden");
+      document.getElementById("authContainer").classList.remove("hidden");
+    }
+
+    // Auto-login if already authenticated
+    window.onload = () => {
+      const user = localStorage.getItem("currentUser");
+      if (user) showSecurePage(user);
+    };
+  </script>
+
+</body>
+</html>

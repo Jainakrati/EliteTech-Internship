@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduStream Platform</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #e6f0ff);
+      color: #333;
+    }
+
+    header {
+      background: #0056b3;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #007bff;
+    }
+
+    nav button {
+      padding: 14px 20px;
+      border: none;
+      background: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    nav button:hover {
+      background-color: #0056b3;
+    }
+
+    .section {
+      display: none;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      margin-top: 20px;
+    }
+
+    .video-container video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .quiz-question {
+      margin: 15px 0;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 30px 0;
+    }
+
+    .progress {
+      height: 100%;
+      background: #28a745;
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .banner {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .login-screen {
+      max-width: 400px;
+      margin: auto;
+      margin-top: 100px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>EduStream 📚</h1>
+    <p>Learn Smarter with Seamless Videos, Quizzes & Tracking</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav id="navMenu" style="display:none">
+    <button onclick="showSection('videos')">🎥 Video Lessons</button>
+    <button onclick="showSection('quizzes')">📝 Quizzes</button>
+    <button onclick="showSection('progress')">📊 Progress</button>
+    <button onclick="logout()">🔒 Logout</button>
+  </nav>
+
+  <!-- Login Section -->
+  <div class="login-screen" id="loginSection">
+    <h2>Login to EduStream</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <br/>
+    <button class="btn" onclick="login()">Login</button>
+  </div>
+
+  <!-- Sections -->
+  
+  <div class="section" id="videos">
+  <h2>🎥 Video Lessons</h2>
+
+  <p>Welcome, <span id="userDisplay1"></span>! Explore your video lessons below:</p>
+
+  <!-- Video 1 -->
+  <div style="margin-bottom: 30px;">
+    <h3>🔬 Physics: How Gravity Works</h3>
+    <div class="video-container">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/MTY1Kje0yLg" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Video 2 -->
+  <div style="margin-bottom: 30px;">
+    <h3>📐 Math: Pythagorean Theorem Explained</h3>
+    <div class="video-container">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/YompsDlEdtc" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Video 3 -->
+  <div style="margin-bottom: 30px;">
+    <h3>💻 Programming: What is HTML?</h3>
+    <div class="video-container">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/qz0aGYrrlhU" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Video 4 -->
+  <div style="margin-bottom: 30px;">
+    <h3>🧪 Chemistry: Atoms & Molecules</h3>
+    <div class="video-container">
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/d0zION8xjbM" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+
+  <div class="section" id="quizzes">
+    <h2>📝 Quiz Time</h2>
+    <p>Test your understanding!</p>
+    <div class="quiz-question">
+      <p>1. What does CSS stand for?</p>
+      <input type="radio" name="q1" value="a"> Cascading Style Sheets<br>
+      <input type="radio" name="q1" value="b"> Computer Style Syntax<br>
+      <input type="radio" name="q1" value="c"> Creative Styling System<br>
+    </div>
+    <div class="quiz-question">
+      <p>2. What does JS stand for?</p>
+      <input type="radio" name="q2" value="a"> JavaScreen<br>
+      <input type="radio" name="q2" value="b"> JavaScript<br>
+      <input type="radio" name="q2" value="c"> JustStyle<br>
+    </div>
+    <button class="btn" onclick="submitQuiz()">Submit Quiz</button>
+  </div>
+
+  <div class="section" id="progress">
+    <h2>📊 Your Learning Progress</h2>
+    <p>Hello <span id="userDisplay2"></span>, here's how far you've come:</p>
+    <div class="progress-bar">
+      <div class="progress" id="progressBar"></div>
+    </div>
+    <p><strong>Progress:</strong> <span id="progressValue">0%</span></p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      if (username && password.length >= 3) {
+        localStorage.setItem("user", username);
+        localStorage.setItem("progress", "33");
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("navMenu").style.display = "flex";
+        document.getElementById("userDisplay1").innerText = username;
+        document.getElementById("userDisplay2").innerText = username;
+        showSection("videos");
+        updateProgress();
+      } else {
+        alert("Please enter a valid username and password (min 3 characters).");
+      }
+    }
+
+    function logout() {
+      localStorage.clear();
+      location.reload();
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll(".section");
+      sections.forEach(sec => sec.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+    }
+
+    function submitQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      let score = 0;
+      if (q1 && q1.value === "a") score++;
+      if (q2 && q2.value === "b") score++;
+      alert(You scored ${score}/2);
+      localStorage.setItem("progress", "100");
+      updateProgress();
+      showSection("progress");
+    }
+
+    function updateProgress() {
+      const prog = parseInt(localStorage.getItem("progress")) || 0;
+      document.getElementById("progressBar").style.width = prog + "%";
+      document.getElementById("progressValue").innerText = prog + "%";
+    }
+
+    window.onload = function () {
+      const user = localStorage.getItem("user");
+      if (user) {
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("navMenu").style.display = "flex";
+        document.getElementById("userDisplay1").innerText = user;
+        document.getElementById("userDisplay2").innerText = user;
+        updateProgress();
+        showSection("videos");
+      }
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #fff;
+      background: url('https://plus.unsplash.com/premium_photo-1683309565422-77818a287060?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cG9ydGZvbGlvJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D') no-repeat center center/cover;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: rgba(0,0,0,0.6);
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #2bdbdb;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #ff4081;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .intro, .skills, .hobbies {
+      margin-bottom: 40px;
+    }
+
+    .skills-list, .hobbies-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .skill, .hobby {
+      flex: 1 1 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .skill:hover, .hobby:hover {
+      transform: scale(1.05);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.7);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Progress Bars */
+    .progress-container {
+      margin-top: 10px;
+      background-color: #333;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 12px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #00ffcc, #ff4081);
+      width: 0%;
+      transition: width 2s ease-in-out;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff4081;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .skills-list, .hobbies-list {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Akrati Jain</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#hobbies">Hobbies</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about" class="intro">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>I'm passionate in web developement with a love for vibrant designs, clean code, and building dynamic web experiences. I enjoy solving complex problems and constantly learning new technologies.</p>
+      <button class="btn" onclick="alert('Resume Downloaded')">Download Resume</button>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        <div class="skill">
+          <h3>Web Development</h3>
+          <div class="progress-container"><div class="progress" data-progress="95%"></div></div>
+        </div>
+        <div class="skill">
+          <h3>C/C++</h3>
+          <div class="progress-container"><div class="progress" data-progress="90%"></div></div>
+        </div>
+        <div class="skill">
+          <h3>Machine Learning and AI</h3>
+          <div class="progress-container"><div class="progress" data-progress="85%"></div></div>
+        </div>
+        <div class="skill">
+          <h3>Cyber Security</h3>
+          <div class="progress-container"><div class="progress" data-progress="80%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hobbies" class="hobbies">
+    <div class="container">
+      <h2>Hobbies</h2>
+      <div class="hobbies-list">
+        <div class="hobby">
+          <h3>Photography</h3>
+          <p>Capturing moments from unique perspectives.</p>
+        </div>
+        <div class="hobby">
+          <h3>Reading Books</h3>
+          <p>Love books and deep thinking.</p>
+        </div>
+        <div class="hobby">
+          <h3>Traveling</h3>
+          <p>Exploring new cultures and landscapes.</p>
+        </div>
+        <div class="hobby">
+          <h3>Music</h3>
+          <p>Enjoy playing guitar and digital music production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>Email: akrati@example.com</p>
+      <p>LinkedIn: <a href="https://linkedin.com" style="color:#eef1f1;">linkedin.com/in/akrati</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 akrati. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Animate skill progress bars
+    window.addEventListener('load', () => {
+      const progresses = document.querySelectorAll('.progress');
+      progresses.forEach(bar => {
+        const width = bar.getAttribute('data-progress');
+        bar.style.width = width;
+      });
+    });
+  </script>
+
+</body>
+</html>
